@@ -1,7 +1,8 @@
 import React from 'react';
-import { withStyles, Tooltip, Button, Paper } from '@material-ui/core'
+import { withStyles, Tooltip, Button, Paper, Typography } from '@material-ui/core'
 import { Add } from '@material-ui/icons';
 import RegisterTable from './RegisterTable';
+import EntryFormModal from './Shared/EntryFormModal';
 
 const width = 950;
 
@@ -34,18 +35,36 @@ const styles = theme => ({
     }
 })
 
-const Register = ({classes}) => {
-    return <div className={classes.root}>
+class Register extends React.Component{
+    state = {
+        open: true
+    }
+
+    handleOpen = () => {
+        this.setState({open: true})
+    }
+
+    handleClose = () => {
+        this.setState({open: false})
+    }
+
+    render(){
+        let {classes} = this.props;
+        let { open } = this.state;
+
+        return <div className={classes.root}>
         <Paper className={classes.paper}>
-            <h1>Registers</h1>
+            <Typography variant="body2" align="right">Last updated 15:10 13/09/2018</Typography>
             <RegisterTable />
+            <EntryFormModal open={open} handleClose={this.handleClose}/>
             <Tooltip title="Add new entry">
-                <Button variant="fab" color="secondary" className={classes.add}>
+                <Button variant="fab" onClick={this.handleOpen} color="secondary" className={classes.add}>
                     <Add />
                 </Button>
             </Tooltip>
         </Paper>
     </div>
+    }
 }
 
 export default withStyles(styles)(Register);

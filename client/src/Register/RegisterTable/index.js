@@ -172,7 +172,7 @@ class RegisterTable extends React.Component{
                                     })}
                                     {emptyRows > 0 && (
                                         <TableRow style={{height: 48 * emptyRows}}>
-                                            <TableCell colSpan={9} />
+                                            <TableCell colSpan={rows.length + 1} />
                                         </TableRow>
                                     )}
                             </TableBody>
