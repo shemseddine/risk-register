@@ -21,9 +21,9 @@ const EnhancedTableHead = ({rows, onRequestSort, onSelectAllClick, order, orderB
                             <Tooltip title="sort" placement={row.numeric ? "bottom-end" : "bottom-start"}
                             enterDelay={300}>
                                 <TableSortLabel active={orderBy === row.id}
-                                direction={order}
-                                onClick={property => event => onRequestSort(property)}>
-                                {row.label} 
+                                    direction={order}
+                                    onClick={property => event => onRequestSort(property)}>
+                                    {row.label} 
                                 </TableSortLabel>
                             </Tooltip>
                         </TableCell>
