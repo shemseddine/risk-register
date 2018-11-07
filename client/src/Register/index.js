@@ -1,70 +1,82 @@
-import React from 'react';
-import { withStyles, Tooltip, Button, Paper, Typography } from '@material-ui/core'
-import { Add } from '@material-ui/icons';
-import RegisterTable from './RegisterTable';
-import EntryFormModal from './Shared/EntryFormModal';
+import React from "react";
+import {
+  withStyles,
+  Tooltip,
+  Button,
+  Paper,
+  Typography
+} from "@material-ui/core";
+import { Add } from "@material-ui/icons";
+import RegisterTable from "./RegisterTable";
+import EntryFormModal from "./Shared/EntryFormModal";
 
 const width = 950;
 
 const styles = theme => ({
-    root: {
-        position: "relative",
-        width: "auto",
-        marginLeft: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit *2,
-        [theme.breakpoints.up(width + theme.spacing.unit * 2 * 2)]: {
-            width: width,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-    },
-    add: {
-        position: "absolute",
-        bottom: theme.spacing.unit * 2,
-        right: theme.spacing.unit * 3
-    },
-    paper: {
-        marginTop: theme.spacing.unit * 3,
-        marginBottom: theme.spacing.unit * 3,
-        padding: theme.spacing.unit * 2,
-        [theme.breakpoints.up(width + theme.spacing.unit * 3 * 2)]: {
-        marginTop: theme.spacing.unit * 6,
-        marginBottom: theme.spacing.unit * 6,
-        padding: theme.spacing.unit * 3,
-        }
+  root: {
+    position: "relative",
+    width: "auto",
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(width + theme.spacing.unit * 2 * 2)]: {
+      width: width,
+      marginLeft: "auto",
+      marginRight: "auto"
     }
-})
-
-class Register extends React.Component{
-    state = {
-        open: true
+  },
+  add: {
+    position: "absolute",
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 3
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(width + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
     }
+  }
+});
 
-    handleOpen = () => {
-        this.setState({open: true})
-    }
+class Register extends React.Component {
+  state = {
+    open: false
+  };
 
-    handleClose = () => {
-        this.setState({open: false})
-    }
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
 
-    render(){
-        let {classes} = this.props;
-        let { open } = this.state;
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
-        return <div className={classes.root}>
+  render() {
+    let { classes } = this.props;
+    let { open } = this.state;
+
+    return (
+      <div className={classes.root}>
         <Paper className={classes.paper}>
-            <Typography variant="body2" align="right">Last updated 15:10 13/09/2018</Typography>
-            <RegisterTable />
-            <EntryFormModal open={open} handleClose={this.handleClose}/>
-            <Tooltip title="Add new entry">
-                <Button variant="fab" onClick={this.handleOpen} color="secondary" className={classes.add}>
-                    <Add />
-                </Button>
-            </Tooltip>
+          <RegisterTable />
+          <EntryFormModal open={open} handleClose={this.handleClose} />
+          <Tooltip title="Add new entry">
+            <Button
+              variant="fab"
+              onClick={this.handleOpen}
+              color="secondary"
+              className={classes.add}
+            >
+              <Add />
+            </Button>
+          </Tooltip>
         </Paper>
-    </div>
-    }
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(Register);
