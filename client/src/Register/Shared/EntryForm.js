@@ -57,6 +57,7 @@ const EntryForm = ({
             value={values.raisedOn}
             onChange={handleChange}
             onBlur={handleBlur}
+            InputLabelProps={{shrink: true}}
             id="raisedOn"
             name="raisedOn"
             label="Raised On"
